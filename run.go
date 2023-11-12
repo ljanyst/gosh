@@ -52,3 +52,14 @@ func RunInS(path, command string) error {
 	args := strings.Split(command, " ")
 	return RunIn(path, args...)
 }
+
+// Run a command in shell in a directory as root
+func SuRunIn(path string, args ...string) error {
+	return RunIn(path, append([]string{"sudo"}, args...)...)
+}
+
+// Run a command in shell in a directory
+func SuRunInS(path, command string) error {
+	args := strings.Split(command, " ")
+	return SuRunIn(path, args...)
+}
