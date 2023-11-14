@@ -10,7 +10,7 @@ import (
 func UserName() string {
 	u, err := user.Current()
 	if err != nil {
-		log.Fatalf("UserName: ", err)
+		log.Fatalf("UserName: %s", err)
 
 	}
 	return u.Username
