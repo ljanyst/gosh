@@ -4,10 +4,13 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // Run a command in shell
 func Run(args ...string) error {
+	log.Debugf("Running: %s", strings.Join(args, " "))
 	cmd := exec.Command(args[0], args[1:]...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -44,6 +47,7 @@ func RunIn(path string, args ...string) error {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
+	log.Debugf("Running: %s in %s", strings.Join(args, " "), path)
 	return cmd.Run()
 }
 
